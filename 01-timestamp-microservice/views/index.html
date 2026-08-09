@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Timestamp Microservice</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Timestamp Microservice</h1>
+      <p>Proyecto 1 &mdash; freeCodeCamp, Back End Development and APIs</p>
+
+      <h2>Pruebas rapidas</h2>
+      <ul>
+        <li><a href="/api/hello">/api/hello</a> &mdash; ejemplo del boilerplate</li>
+        <li><a href="/api/2015-12-25">/api/2015-12-25</a> &mdash; fecha ISO</li>
+        <li><a href="/api/1451001600000">/api/1451001600000</a> &mdash; timestamp unix</li>
+        <li><a href="/api/">/api/</a> &mdash; vacio, deberia dar la hora actual</li>
+        <li><a href="/api/esto-no-es-fecha">/api/esto-no-es-fecha</a> &mdash; invalida</li>
+      </ul>
+
+      <h2>Respuesta esperada</h2>
+      <pre>{ "unix": 1451001600000, "utc": "Fri, 25 Dec 2015 00:00:00 GMT" }</pre>
+    </main>
+  </body>
+</html>
