@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Back End Development and APIs — Luis Carabalí</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Back End Development and APIs</h1>
+      <p>
+        Los cinco proyectos de la certificación de freeCodeCamp, servidos por
+        una sola aplicación. Node.js, Express y <code>node:sqlite</code>.
+      </p>
+      <p>
+        Luis Alberto Carabalí Rivera &mdash;
+        <a href="https://luiscarabalir.github.io/">portafolio</a> &middot;
+        <a href="https://github.com/LuisCarabaliR/fcc-backend-apis">código</a>
+      </p>
+
+      <h2>1 &middot; Timestamp Microservice</h2>
+      <ul>
+        <li><a href="/api/2015-12-25">/api/2015-12-25</a> &mdash; fecha con formato</li>
+        <li><a href="/api/1451001600000">/api/1451001600000</a> &mdash; timestamp unix</li>
+        <li><a href="/api/">/api/</a> &mdash; sin parámetro, da la hora actual</li>
+        <li><a href="/api/esto-no-es-fecha">/api/esto-no-es-fecha</a> &mdash; inválida</li>
+      </ul>
+
+      <h2>2 &middot; Request Header Parser</h2>
+      <ul>
+        <li><a href="/api/whoami">/api/whoami</a></li>
+        <li><a href="/api/debug">/api/debug</a> &mdash; todo lo que trae la petición</li>
+      </ul>
+
+      <h2>3 &middot; URL Shortener</h2>
+      <form action="/api/shorturl" method="post">
+        <label for="url">URL a acortar</label>
+        <input id="url" type="text" name="url" value="https://www.freecodecamp.org" />
+        <button type="submit">Acortar</button>
+      </form>
+      <p><code>GET /api/shorturl/1</code> redirige a la original.</p>
+
+      <h2>4 &middot; Exercise Tracker</h2>
+      <form action="/api/users" method="post">
+        <label for="uname">Crear usuario</label>
+        <input id="uname" type="text" name="username" />
+        <button type="submit">Crear</button>
+      </form>
+      <ul>
+        <li><a href="/api/users">/api/users</a> &mdash; lista de usuarios</li>
+        <li><code>POST /api/users/:_id/exercises</code></li>
+        <li><code>GET /api/users/:_id/logs?from=&amp;to=&amp;limit=</code></li>
+      </ul>
+
+      <h2>5 &middot; File Metadata</h2>
+      <form action="/api/fileanalyse" method="post" enctype="multipart/form-data">
+        <label for="upfile">Subir un archivo</label>
+        <input id="upfile" type="file" name="upfile" />
+        <button type="submit">Analizar</button>
+      </form>
+    </main>
+  </body>
+</html>

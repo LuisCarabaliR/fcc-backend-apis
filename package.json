@@ -1,0 +1,20 @@
+{
+  "name": "fcc-backend-apis",
+  "version": "1.0.0",
+  "description": "Los cinco proyectos de la certificacion Back End Development and APIs de freeCodeCamp, servidos por una sola aplicacion",
+  "main": "server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "license": "MIT"
+}
