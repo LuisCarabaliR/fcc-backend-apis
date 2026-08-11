@@ -18,6 +18,16 @@ const upload = multer({
 // 'upfile' tiene que coincidir con el atributo name del input del formulario;
 // si no coincide, req.file llega undefined y no hay error que lo explique.
 router.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
+  // Diagnostico temporal: deja constancia de lo que llego de verdad, para
+  // poder comparar lo que manda un cliente propio con lo que manda el
+  // evaluador de freeCodeCamp.
+  console.log(
+    'fileanalyse ->',
+    req.file
+      ? `archivo: name=${req.file.originalname} type=${req.file.mimetype} size=${req.file.size}`
+      : `SIN ARCHIVO. campos=${JSON.stringify(req.body)} keys=${Object.keys(req.body || {})}`,
+  );
+
   if (!req.file) {
     return res.json({ error: 'No file uploaded' });
   }

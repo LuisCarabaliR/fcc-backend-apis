@@ -32,6 +32,28 @@ const app = express();
 app.set('trust proxy', true);
 
 app.use(cors({ optionsSuccessStatus: 200 }));
+
+// Registro minimo de peticiones. Sin esto, cuando algo falla en produccion
+// solo se sabe que "no funciona": no hay forma de ver si la peticion siquiera
+// llego, con que cabeceras, ni que se respondio.
+app.use((req, res, next) => {
+  const inicio = Date.now();
+  res.on('finish', () => {
+    console.log(
+      [
+        req.method,
+        req.originalUrl,
+        res.statusCode,
+        `${Date.now() - inicio}ms`,
+        `origin=${req.headers.origin || '-'}`,
+        `ct=${(req.headers['content-type'] || '-').slice(0, 40)}`,
+        `len=${req.headers['content-length'] || '-'}`,
+      ].join(' '),
+    );
+  });
+  next();
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
