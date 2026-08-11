@@ -6,13 +6,16 @@ Luis Alberto Carabalí Rivera · [luiscarabalir.github.io](https://luiscarabalir
 
 ## Proyectos
 
-| # | Proyecto | Estado |
-|---|----------|--------|
-| 1 | [Timestamp Microservice](01-timestamp-microservice) | en curso |
-| 2 | Request Header Parser Microservice | pendiente |
-| 3 | URL Shortener Microservice | pendiente |
-| 4 | Exercise Tracker | pendiente |
-| 5 | File Metadata Microservice | pendiente |
+| # | Proyecto | Puerto | Estado |
+|---|----------|--------|--------|
+| 1 | [Timestamp Microservice](01-timestamp-microservice) | 3000 | ✅ los 7 casos pasan |
+| 2 | [Request Header Parser](02-request-header-parser) | 3001 | ✅ los 3 casos pasan |
+| 3 | URL Shortener Microservice | — | pendiente |
+| 4 | Exercise Tracker | — | pendiente |
+| 5 | File Metadata Microservice | — | pendiente |
+
+Falta desplegarlos: freeCodeCamp valida contra una URL pública, así que hasta
+que estén en línea no puede darse por acreditada la certificación.
 
 ## Stack
 
