@@ -19,6 +19,18 @@ const path = require('node:path');
 
 const app = express();
 
+// En produccion la aplicacion no recibe las peticiones directamente: entran por
+// el proxy de la plataforma. Sin esta linea, req.ip devuelve la direccion del
+// proxy (::1) en vez de la de quien visita, y /api/whoami informa siempre lo
+// mismo. Con 'trust proxy' activo, Express lee la IP real de la cabecera
+// X-Forwarded-For que agrega el proxy.
+//
+// Ojo: confiar en esa cabecera solo es seguro cuando el unico camino hacia la
+// aplicacion pasa por un proxy controlado, como aqui. Si la app fuera
+// alcanzable directamente, cualquiera podria falsear su IP mandando la
+// cabecera a mano.
+app.set('trust proxy', true);
+
 app.use(cors({ optionsSuccessStatus: 200 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
