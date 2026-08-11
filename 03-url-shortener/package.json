@@ -1,0 +1,16 @@
+{
+  "name": "fcc-url-shortener",
+  "version": "1.0.0",
+  "description": "freeCodeCamp - Back End Development and APIs - Proyecto 3",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "license": "MIT"
+}

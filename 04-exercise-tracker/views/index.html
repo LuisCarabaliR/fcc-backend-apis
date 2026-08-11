@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exercise Tracker</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Exercise Tracker</h1>
+      <p>Proyecto 4 &mdash; freeCodeCamp, Back End Development and APIs</p>
+
+      <h2>Crear usuario</h2>
+      <form action="/api/users" method="post">
+        <label for="uname">Nombre de usuario</label>
+        <input id="uname" type="text" name="username" />
+        <button type="submit">Crear</button>
+      </form>
+
+      <h2>Agregar ejercicio</h2>
+      <form id="exForm" action="/api/users/ID/exercises" method="post">
+        <label for="uid">_id del usuario</label>
+        <input id="uid" type="text" name=":_id" />
+        <label for="desc">Descripcion</label>
+        <input id="desc" type="text" name="description" />
+        <label for="dur">Duracion (minutos)</label>
+        <input id="dur" type="text" name="duration" />
+        <label for="dat">Fecha (opcional, yyyy-mm-dd)</label>
+        <input id="dat" type="text" name="date" />
+        <button type="submit">Agregar</button>
+      </form>
+
+      <h2>Endpoints</h2>
+      <ul>
+        <li><code>POST /api/users</code> &mdash; crea usuario</li>
+        <li><a href="/api/users"><code>GET /api/users</code></a> &mdash; lista usuarios</li>
+        <li><code>POST /api/users/:_id/exercises</code> &mdash; agrega ejercicio</li>
+        <li><code>GET /api/users/:_id/logs</code> &mdash; historial</li>
+        <li><code>GET /api/users/:_id/logs?from=&amp;to=&amp;limit=</code> &mdash; historial filtrado</li>
+      </ul>
+
+      <h2>Respuesta del historial</h2>
+      <pre>{
+  "username": "luis",
+  "count": 1,
+  "_id": "6a1f...",
+  "log": [
+    { "description": "correr", "duration": 30, "date": "Mon Jan 01 1990" }
+  ]
+}</pre>
+    </main>
+
+    <script>
+      // Arma la URL del formulario de ejercicios con el _id que escriba el usuario
+      document.getElementById('exForm').addEventListener('submit', function (e) {
+        var id = document.getElementById('uid').value.trim();
+        if (id) this.action = '/api/users/' + id + '/exercises';
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>File Metadata</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>File Metadata Microservice</h1>
+      <p>Proyecto 5 &mdash; freeCodeCamp, Back End Development and APIs</p>
+
+      <h2>Subir un archivo</h2>
+      <form action="/api/fileanalyse" method="post" enctype="multipart/form-data">
+        <label for="upfile">Archivo</label>
+        <input id="upfile" type="file" name="upfile" />
+        <button type="submit">Analizar</button>
+      </form>
+
+      <h2>Ojo con el formulario</h2>
+      <p>
+        El <code>enctype="multipart/form-data"</code> es obligatorio. Sin eso el
+        navegador manda solo el <em>nombre</em> del archivo, no su contenido, y
+        el servidor no recibe nada.
+      </p>
+
+      <h2>Respuesta esperada</h2>
+      <pre>{ "name": "foto.png", "type": "image/png", "size": 24680 }</pre>
+    </main>
+  </body>
+</html>

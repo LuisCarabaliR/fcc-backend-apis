@@ -1,29 +1,66 @@
 # freeCodeCamp — Back End Development and APIs
 
-Proyectos de la certificación *Back End Development and APIs* de freeCodeCamp.
+Los cinco proyectos de la certificación *Back End Development and APIs*.
 
 Luis Alberto Carabalí Rivera · [luiscarabalir.github.io](https://luiscarabalir.github.io/)
 
 ## Proyectos
 
-| # | Proyecto | Puerto | Estado |
-|---|----------|--------|--------|
-| 1 | [Timestamp Microservice](01-timestamp-microservice) | 3000 | ✅ los 7 casos pasan |
-| 2 | [Request Header Parser](02-request-header-parser) | 3001 | ✅ los 3 casos pasan |
-| 3 | URL Shortener Microservice | — | pendiente |
-| 4 | Exercise Tracker | — | pendiente |
-| 5 | File Metadata Microservice | — | pendiente |
+| # | Proyecto | Puerto | Qué practica | Estado |
+|---|----------|--------|--------------|--------|
+| 1 | [Timestamp Microservice](01-timestamp-microservice) | 3000 | parámetros de ruta, fechas | ✅ 7/7 |
+| 2 | [Request Header Parser](02-request-header-parser) | 3001 | cabeceras HTTP | ✅ 3/3 |
+| 3 | [URL Shortener](03-url-shortener) | 3002 | POST, persistencia, validación por DNS | ✅ 6/6 |
+| 4 | [Exercise Tracker](04-exercise-tracker) | 3003 | dos tablas, historial, filtros | ✅ 22/22 |
+| 5 | [File Metadata](05-file-metadata) | 3004 | subida de archivos (multipart) | ✅ 4/4 |
 
-Falta desplegarlos: freeCodeCamp valida contra una URL pública, así que hasta
-que estén en línea no puede darse por acreditada la certificación.
+## Cómo correr cualquiera
+
+```bash
+cd 0X-nombre-del-proyecto
+npm install
+npm run dev
+```
+
+`npm run dev` usa `node --watch`: reinicia solo al guardar.
 
 ## Stack
 
-Node.js y Express. Cada proyecto es independiente: se entra a su carpeta,
-`npm install` y `npm start`.
+Node.js y Express, sin framework por encima. Los proyectos 3 y 4 guardan datos
+con **`node:sqlite`**, el módulo de SQLite que viene incluido en Node desde la
+versión 22 — sin dependencia externa ni servidor de base de datos que levantar.
+El 5 usa `multer` para leer `multipart/form-data`.
 
-## Por qué este repositorio es público
+Cada proyecto es independiente: tiene su propio `package.json` y su propio
+puerto, así que se pueden correr varios a la vez.
 
-freeCodeCamp valida cada proyecto contra una **URL públicamente accesible**, así
-que el código y el despliegue tienen que serlo. Son ejercicios de formación, sin
-valor comercial.
+## Cosas que valen la pena mirar en el código
+
+**Proyecto 1 — el parámetro de ruta siempre llega como texto.**
+`new Date("1451001600000")` no es lo mismo que `new Date(1451001600000)`: con
+texto intenta interpretarlo como fecha con formato y falla. Y una fecha
+inválida no lanza error, devuelve un `Date` cuyo `getTime()` es `NaN`.
+
+**Proyecto 2 — las cabeceras llevan guion.**
+`req.headers.accept-language` no funciona porque JavaScript lee el guion como
+una resta. Hay que usar corchetes.
+
+**Proyecto 3 — validar no es comprobar el formato.**
+Que el texto tenga forma de URL no significa que el dominio exista. Se valida
+en dos pasos: protocolo `http/https`, y resolución real por DNS.
+
+**Proyecto 4 — el bug de zona horaria.**
+Una fecha de calendario no es un instante: no tiene hora ni zona.
+`new Date("1990-01-01")` se interpreta como medianoche **UTC**, pero
+`toDateString()` imprime en hora **local**. En Colombia (UTC−5) eso convertía
+`1990-01-01` en `Sun Dec 31 1989`. La solución es no mezclar los dos mundos y
+usar siempre componentes locales. Está documentado en el código.
+
+**Proyecto 5 — por qué el archivo no toca el disco.**
+Solo hacen falta los metadatos, así que se usa `memoryStorage`. Guardarlo sería
+acumular basura y regalar un problema de seguridad.
+
+## Pendiente
+
+Desplegar los cinco: freeCodeCamp valida contra una **URL pública**, así que
+hasta que estén en línea la certificación no puede acreditarse.

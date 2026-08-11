@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>URL Shortener</h1>
+      <p>Proyecto 3 &mdash; freeCodeCamp, Back End Development and APIs</p>
+
+      <h2>Probar</h2>
+      <form action="/api/shorturl" method="post">
+        <label for="url">URL a acortar</label>
+        <input id="url" type="text" name="url" value="https://www.google.com" />
+        <button type="submit">Acortar</button>
+      </form>
+
+      <h2>Como usarlo</h2>
+      <ul>
+        <li><code>POST /api/shorturl</code> con <code>url=https://ejemplo.com</code></li>
+        <li><code>GET /api/shorturl/1</code> &mdash; redirige a la original</li>
+      </ul>
+
+      <h2>Respuesta esperada</h2>
+      <pre>{ "original_url": "https://www.google.com", "short_url": 1 }</pre>
+
+      <h2>URL invalida</h2>
+      <pre>{ "error": "invalid url" }</pre>
+    </main>
+  </body>
+</html>

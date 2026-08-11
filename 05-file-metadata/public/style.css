@@ -1,0 +1,70 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #ffffff;
+  --muted: #5a5a5a;
+  --accent: #2b6cb0;
+  --panel: #f4f6f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8e8e8;
+    --bg: #16181c;
+    --muted: #a0a4ab;
+    --accent: #7fb2f0;
+    --panel: #22252b;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1.25rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 0.25rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+a {
+  color: var(--accent);
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+pre {
+  background: var(--panel);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* Formulario de prueba */
+label{display:block;margin-bottom:.35rem;font-weight:600}
+input[type=text]{width:100%;padding:.6rem .7rem;border:1px solid var(--muted);border-radius:6px;background:var(--bg);color:var(--fg);font-size:1rem}
+button{margin-top:.7rem;padding:.6rem 1.2rem;border:0;border-radius:6px;background:var(--accent);color:#fff;font-size:1rem;font-weight:600;cursor:pointer}
+form{background:var(--panel);padding:1rem;border-radius:8px}
+code{background:var(--panel);padding:.1rem .35rem;border-radius:4px}
