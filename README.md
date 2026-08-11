@@ -60,7 +60,47 @@ usar siempre componentes locales. Está documentado en el código.
 Solo hacen falta los metadatos, así que se usa `memoryStorage`. Guardarlo sería
 acumular basura y regalar un problema de seguridad.
 
-## Pendiente
+## Despliegue
 
-Desplegar los cinco: freeCodeCamp valida contra una **URL pública**, así que
-hasta que estén en línea la certificación no puede acreditarse.
+Los cinco corren desde una sola aplicación:
+**https://fcc-backend-apis-j7lg.onrender.com**
+
+| # | Endpoint | Validado por freeCodeCamp |
+|---|----------|---------------------------|
+| 1 | `/api/:date?` | ✅ |
+| 2 | `/api/whoami` | ✅ |
+| 3 | `/api/shorturl` | ✅ |
+| 4 | `/api/users/...` | ✅ |
+| 5 | `/api/fileanalyse` | ⚠️ ver abajo |
+
+## Sobre el proyecto 5 y la certificación V8
+
+El File Metadata Microservice **funciona correctamente** — verificado en
+producción replicando el payload exacto del evaluador:
+
+```
+$ curl -F "upfile=@01d.png;filename=icon;type=image/png" \
+       https://fcc-backend-apis-j7lg.onrender.com/api/fileanalyse
+{"name":"icon","type":"image/png","size":1148}
+```
+
+Aun así, el test 4 de freeCodeCamp lo marca como fallido. La causa es un **bug
+del evaluador de freeCodeCamp**, no del código:
+
+```
+Error: blob is not implemented yet
+  at Object.blob (dom-test-evaluator.js:2:103360)
+```
+
+Su sandbox no implementa `Response.blob()`, así que el test falla al preparar
+el archivo y **nunca llega a enviar la petición**. Se comprobó con los registros
+del servidor: durante cada ejecución sólo entran los dos `GET /` de los tests 2
+y 3, y ningún `POST /api/fileanalyse`.
+
+El equipo de freeCodeCamp ha respondido en el foro que esta certificación está
+**archivada, sin mantenimiento y sin opción de revisión manual**, y recomienda
+la versión vigente
+([back-end-development-and-apis-v9](https://www.freecodecamp.org/learn/back-end-development-and-apis-v9/)).
+
+El código queda aquí porque funciona y sirve como referencia, aunque el
+certificado V8 ya no sea obtenible.
