@@ -1,0 +1,20 @@
+# Configuracion del despliegue en Render.
+#
+# Con este archivo en la raiz, Render lee la configuracion del repositorio en
+# vez de pedirla por formulario, y queda versionada junto al codigo.
+#
+# NODE_VERSION importa: node:sqlite (proyectos 3 y 4) solo esta disponible sin
+# flag experimental desde Node 24. Con Node 22 el arranque falla con
+# "No such built-in module: node:sqlite".
+
+services:
+  - type: web
+    name: fcc-backend-apis
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
